@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-class PlutoBaseColumnGroup extends StatelessWidget
-    implements PlutoVisibilityLayoutChild {
+class PlutoBaseColumnGroup extends StatelessWidget implements PlutoVisibilityLayoutChild {
   final PlutoGridStateManager stateManager;
 
   final PlutoColumnGroupPair columnGroup;
@@ -15,9 +14,7 @@ class PlutoBaseColumnGroup extends StatelessWidget
     required this.depth,
   }) : super(key: columnGroup.key);
 
-  int get _childrenDepth => columnGroup.group.hasChildren
-      ? stateManager.columnGroupDepth(columnGroup.group.children!)
-      : 0;
+  int get _childrenDepth => columnGroup.group.hasChildren ? stateManager.columnGroupDepth(columnGroup.group.children!) : 0;
 
   @override
   double get width => columnGroup.width;
@@ -38,20 +35,37 @@ class PlutoBaseColumnGroup extends StatelessWidget
       );
     }
 
+    ///v header down
+    bool headerdown = true;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _ColumnGroupTitle(
-          stateManager: stateManager,
-          columnGroup: columnGroup,
-          depth: depth,
-          childrenDepth: _childrenDepth,
-        ),
-        _ColumnGroup(
-          stateManager: stateManager,
-          columnGroup: columnGroup,
-          depth: _childrenDepth,
-        ),
+        if (headerdown == true) ...[
+          _ColumnGroup(
+            stateManager: stateManager,
+            columnGroup: columnGroup,
+            depth: _childrenDepth,
+          ),
+          _ColumnGroupTitle(
+            stateManager: stateManager,
+            columnGroup: columnGroup,
+            depth: depth,
+            childrenDepth: _childrenDepth,
+          ),
+        ] else ...[
+          _ColumnGroupTitle(
+            stateManager: stateManager,
+            columnGroup: columnGroup,
+            depth: depth,
+            childrenDepth: _childrenDepth,
+          ),
+          _ColumnGroup(
+            stateManager: stateManager,
+            columnGroup: columnGroup,
+            depth: _childrenDepth,
+          ),
+        ]
       ],
     );
   }
@@ -96,12 +110,9 @@ class _ColumnGroupTitle extends StatelessWidget {
     required this.childrenDepth,
   });
 
-  EdgeInsets get _padding =>
-      columnGroup.group.titlePadding ??
-      stateManager.configuration!.style.defaultColumnTitlePadding;
+  EdgeInsets get _padding => columnGroup.group.titlePadding ?? stateManager.configuration!.style.defaultColumnTitlePadding;
 
-  String? get _title =>
-      columnGroup.group.titleSpan == null ? columnGroup.group.title : null;
+  String? get _title => columnGroup.group.titleSpan == null ? columnGroup.group.title : null;
 
   List<InlineSpan>? get _children => [
         if (columnGroup.group.titleSpan != null) columnGroup.group.titleSpan!,
@@ -109,9 +120,11 @@ class _ColumnGroupTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double groupTitleHeight = columnGroup.group.hasChildren
-        ? (depth - childrenDepth) * stateManager.columnHeight
-        : depth * stateManager.columnHeight;
+
+
+    ///v
+    // final double groupTitleHeight = columnGroup.group.hasChildren ? (depth - childrenDepth) * stateManager.columnHeight : depth * stateManager.columnHeight;
+    final double groupTitleHeight = columnGroup.group.hasChildren ? (depth - childrenDepth) * stateManager.columnGroupHeight : depth * stateManager.columnGroupHeight;
 
     final style = stateManager.style;
 
@@ -165,8 +178,7 @@ class _ColumnGroup extends StatelessWidget {
     required this.depth,
   });
 
-  List<PlutoColumnGroupPair> get _separateLinkedGroup =>
-      stateManager.separateLinkedGroup(
+  List<PlutoColumnGroupPair> get _separateLinkedGroup => stateManager.separateLinkedGroup(
         columnGroupList: columnGroup.group.children!,
         columns: columnGroup.columns,
       );
@@ -217,8 +229,7 @@ class ColumnGroupLayout extends MultiChildLayoutDelegate {
 
   int depth;
 
-  ColumnGroupLayout(this.stateManager, this.separateLinkedGroups, this.depth)
-      : super(relayout: stateManager.resizingChangeNotifier);
+  ColumnGroupLayout(this.stateManager, this.separateLinkedGroups, this.depth) : super(relayout: stateManager.resizingChangeNotifier);
 
   @override
   Size getSize(BoxConstraints constraints) {
@@ -272,8 +283,7 @@ class ColumnsLayout extends MultiChildLayoutDelegate {
 
   List<PlutoColumn> columns;
 
-  ColumnsLayout(this.stateManager, this.columns)
-      : super(relayout: stateManager.resizingChangeNotifier);
+  ColumnsLayout(this.stateManager, this.columns) : super(relayout: stateManager.resizingChangeNotifier);
 
   double totalColumnsHeight = 0;
 

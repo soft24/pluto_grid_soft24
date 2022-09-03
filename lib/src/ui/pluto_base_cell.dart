@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-class PlutoBaseCell extends StatelessWidget
-    implements PlutoVisibilityLayoutChild {
+class PlutoBaseCell extends StatelessWidget implements PlutoVisibilityLayoutChild {
   final PlutoCell cell;
 
   final PlutoColumn column;
@@ -96,9 +95,7 @@ class PlutoBaseCell extends StatelessWidget
   }
 
   void Function(TapDownDetails details)? _onSecondaryTapOrNull() {
-    return stateManager.onRowSecondaryTap == null
-        ? null
-        : _handleOnSecondaryTap;
+    return stateManager.onRowSecondaryTap == null ? null : _handleOnSecondaryTap;
   }
 
   @override
@@ -118,8 +115,7 @@ class PlutoBaseCell extends StatelessWidget
         rowIdx: rowIdx,
         row: row,
         column: column,
-        cellPadding: column.cellPadding ??
-            stateManager.configuration!.style.defaultCellPadding,
+        cellPadding: column.cellPadding ?? stateManager.configuration!.style.defaultCellPadding,
         stateManager: stateManager,
         child: _BuildCell(
           stateManager: stateManager,
@@ -177,6 +173,14 @@ class _CellContainerState extends PlutoStateWithChange<_CellContainer> {
 
   @override
   void updateState() {
+    ///v todo: сделать по человечи отрисовку полосок
+    bool haveGroup = widget.cell.column.group != null;
+    bool needBorder = false;
+    if (haveGroup) {
+      // print('column.titleWithGroup "' + widget.cell.column.group!.title.toString()+'"   haveGroup='+haveGroup.toString());
+      needBorder = widget.cell.column.group!.title != "Salary options";
+    }
+
     final style = stateManager.style;
 
     final isCurrentCell = stateManager.isCurrentCell(widget.cell);
@@ -193,7 +197,11 @@ class _CellContainerState extends PlutoStateWithChange<_CellContainer> {
           widget.column,
           widget.rowIdx,
         ),
-        enableCellVerticalBorder: style.enableCellBorderVertical,
+        // enableCellVerticalBorder: style.enableCellBorderVertical,
+        // enableCellVerticalBorder: style.enableCellBorderVertical, ///v  vertical borders
+        enableCellVerticalBorder: needBorder,
+
+        ///v  vertical borders
         borderColor: style.borderColor,
         activatedBorderColor: style.activatedBorderColor,
         activatedColor: style.activatedColor,
@@ -270,6 +278,8 @@ class _CellContainerState extends PlutoStateWithChange<_CellContainer> {
       );
     } else {
       return enableCellVerticalBorder
+
+          ///v
           ? BoxDecoration(
               border: BorderDirectional(
                 end: BorderSide(

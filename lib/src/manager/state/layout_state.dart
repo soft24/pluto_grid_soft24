@@ -49,7 +49,9 @@ abstract class ILayoutState {
 
   double get columnHeight;
 
+  ///v
   double get columnGroupHeight;
+  double get headerBottom;
 
   double get columnFilterHeight;
 
@@ -236,7 +238,10 @@ mixin LayoutState implements IPlutoGridState {
 
   @override
   double get columnGroupHeight =>
-      showColumnGroups ? columnGroupDepth(columnGroups) * columnHeight : 0;
+      showColumnGroups ? columnGroupDepth(columnGroups) *  configuration!.style.columnGroupHeight : 0;
+
+ @override
+  double get headerBottom => headerBottom;
 
   @override
   double get columnFilterHeight =>

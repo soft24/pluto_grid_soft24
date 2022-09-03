@@ -128,7 +128,7 @@ class PlutoGridStyleConfig {
     this.activatedColor = const Color(0xFFDCF5FF),
     this.checkedColor = const Color(0x11757575),
     this.cellColorInEditState = Colors.white,
-    this.cellColorInReadOnlyState = const Color(0xFFDBDBDC),
+    this.cellColorInReadOnlyState = const Color(0xFFC4C7CC),
     this.dragTargetColumnColor = const Color(0xFFDCF5FF),
     this.iconColor = Colors.black26,
     this.disabledIconColor = Colors.black12,
@@ -140,6 +140,8 @@ class PlutoGridStyleConfig {
     this.iconSize = 18,
     this.rowHeight = PlutoGridSettings.rowHeight,
     this.columnHeight = PlutoGridSettings.rowHeight,
+    this.columnGroupHeight=32,///v
+    this.headerBottom=true,///v
     this.columnFilterHeight = PlutoGridSettings.rowHeight,
     this.defaultColumnTitlePadding = PlutoGridSettings.columnTitlePadding,
     this.defaultColumnFilterPadding = PlutoGridSettings.columnFilterPadding,
@@ -156,10 +158,10 @@ class PlutoGridStyleConfig {
     ),
     this.columnContextIcon = Icons.dehaze,
     this.columnResizeIcon = Icons.code_sharp,
-    this.columnAscendingIcon,
-    this.columnDescendingIcon,
     this.gridBorderRadius = BorderRadius.zero,
     this.gridPopupBorderRadius = BorderRadius.zero,
+
+
   });
 
   const PlutoGridStyleConfig.dark({
@@ -188,6 +190,8 @@ class PlutoGridStyleConfig {
     this.iconSize = 18,
     this.rowHeight = PlutoGridSettings.rowHeight,
     this.columnHeight = PlutoGridSettings.rowHeight,
+    this.columnGroupHeight=32,///v
+    this.headerBottom=true,///v
     this.columnFilterHeight = PlutoGridSettings.rowHeight,
     this.defaultColumnTitlePadding = PlutoGridSettings.columnTitlePadding,
     this.defaultColumnFilterPadding = PlutoGridSettings.columnFilterPadding,
@@ -204,8 +208,6 @@ class PlutoGridStyleConfig {
     ),
     this.columnContextIcon = Icons.dehaze,
     this.columnResizeIcon = Icons.code_sharp,
-    this.columnAscendingIcon,
-    this.columnDescendingIcon,
     this.gridBorderRadius = BorderRadius.zero,
     this.gridPopupBorderRadius = BorderRadius.zero,
   });
@@ -298,6 +300,13 @@ class PlutoGridStyleConfig {
   /// Height of column.
   final double columnHeight;
 
+
+  ///v Height of column columnGroupHeight.
+  final double columnGroupHeight;
+
+  ///v header bottom
+  final bool headerBottom;
+
   /// Height of column filter.
   final double columnFilterHeight;
 
@@ -326,16 +335,6 @@ class PlutoGridStyleConfig {
   /// If enableContextMenu of PlutoColumn is false and enableDropToResize is true,
   /// only the width of the column can be adjusted.
   final IconData columnResizeIcon;
-
-  /// Ascending icon when sorting a column.
-  ///
-  /// If no value is specified, the default icon is set.
-  final Icon? columnAscendingIcon;
-
-  /// Descending icon when sorting a column.
-  ///
-  /// If no value is specified, the default icon is set.
-  final Icon? columnDescendingIcon;
 
   /// Apply the border radius of [PlutoGrid].
   final BorderRadiusGeometry gridBorderRadius;
@@ -377,8 +376,6 @@ class PlutoGridStyleConfig {
     TextStyle? cellTextStyle,
     IconData? columnContextIcon,
     IconData? columnResizeIcon,
-    PlutoOptional<Icon?>? columnAscendingIcon,
-    PlutoOptional<Icon?>? columnDescendingIcon,
     BorderRadiusGeometry? gridBorderRadius,
     BorderRadiusGeometry? gridPopupBorderRadius,
   }) {
@@ -428,12 +425,6 @@ class PlutoGridStyleConfig {
       cellTextStyle: cellTextStyle ?? this.cellTextStyle,
       columnContextIcon: columnContextIcon ?? this.columnContextIcon,
       columnResizeIcon: columnResizeIcon ?? this.columnResizeIcon,
-      columnAscendingIcon: columnAscendingIcon == null
-          ? this.columnAscendingIcon
-          : columnAscendingIcon.value,
-      columnDescendingIcon: columnDescendingIcon == null
-          ? this.columnDescendingIcon
-          : columnDescendingIcon.value,
       gridBorderRadius: gridBorderRadius ?? this.gridBorderRadius,
       gridPopupBorderRadius:
           gridPopupBorderRadius ?? this.gridPopupBorderRadius,
@@ -989,8 +980,8 @@ class PlutoGridLocaleText {
   const PlutoGridLocaleText.persian({
     // Column menu
     this.unfreezeColumn = 'جدا کردن',
-    this.freezeColumnToStart = 'چسباندن به ابتدا',
-    this.freezeColumnToEnd = 'چسباندن به انتها',
+    this.freezeColumnToStart = 'چسباندن به چپ', // need to change translation
+    this.freezeColumnToEnd = 'چسباندن به راست', // need to change translation
     this.autoFitColumn = 'عرض خودکار',
     this.hideColumn = 'مخفی کردن ستون',
     this.setColumns = 'تنظیم ستون ها',

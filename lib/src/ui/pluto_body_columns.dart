@@ -150,8 +150,7 @@ class MainColumnLayoutDelegate extends MultiChildLayoutDelegate {
     totalColumnsHeight = 0;
 
     if (stateManager.showColumnGroups) {
-      totalColumnsHeight =
-          stateManager.columnGroupHeight + stateManager.columnHeight;
+      totalColumnsHeight =           stateManager.columnGroupHeight + stateManager.columnHeight;
     } else {
       totalColumnsHeight = stateManager.columnHeight;
     }
