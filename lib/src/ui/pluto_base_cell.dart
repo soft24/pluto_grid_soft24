@@ -174,14 +174,11 @@ class _CellContainerState extends PlutoStateWithChange<_CellContainer> {
   @override
   void updateState() {
     ///v todo: сделать по человечи отрисовку полосок
-    bool haveGroup = widget.cell.column.group != null;
-    bool needBorder = false;
-    // if (haveGroup) {
-    //   // print('column.titleWithGroup "' + widget.cell.column.group!.title.toString()+'"   haveGroup='+haveGroup.toString());
-    //   needBorder = widget.cell.column.group!.title != "Salary options" && widget.cell.column.group!.title != "Benefits";
-    // }
+    bool needBorder =false;
+    if (stateManager.configuration!.linesForFields != null) {
+       needBorder = stateManager.configuration!.linesForFields!.contains(widget.cell.column.field);
+    }
 
-    //rrr //rrrrrrrrrrrrrrr
 
     final style = stateManager.style;
 

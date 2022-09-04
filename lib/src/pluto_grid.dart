@@ -64,6 +64,7 @@ class PlutoGrid extends PlutoStatefulWidget {
     this.createFooter,
     this.rowColorCallback,
     this.columnMenuDelegate,
+
     this.configuration,
     this.mode = PlutoGridMode.normal,
   }) : super(key: key);
@@ -241,6 +242,10 @@ class PlutoGrid extends PlutoStatefulWidget {
   /// https://github.com/bosskmk/pluto_grid/blob/master/demo/lib/screen/feature/column_menu_screen.dart
   /// {@endtemplate}
   final PlutoColumnMenuDelegate? columnMenuDelegate;
+
+
+
+
 
   /// {@template pluto_grid_property_configuration}
   /// In [configuration], you can change the style and settings or text used in [PlutoGrid].
@@ -610,7 +615,7 @@ class PlutoGridState extends PlutoStateWithChange<PlutoGrid> {
                   id: _StackName.leftFrozenDivider,
                   child: PlutoShadowLine(
                     axis: Axis.vertical,
-                    color: style.gridBorderColor,
+                    color: style.lineColor,
                     shadow: style.enableGridBorderShadow,
                   ),
                 ),

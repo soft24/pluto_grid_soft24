@@ -128,17 +128,12 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
     final contextMenuIcon = Container(
       height: widget.height,
       alignment: Alignment.center,
-      child: IconButton(
-        icon: PlutoGridColumnIcon(
-          sort: _sort,
-          color: stateManager.configuration!.style.iconColor,
-          icon: widget.column.enableContextMenu
-              ? stateManager.configuration!.style.columnContextIcon
-              : stateManager.configuration!.style.columnResizeIcon,
-        ),
-        iconSize: stateManager.configuration!.style.iconSize,
-        mouseCursor: contextMenuCursor,
-        onPressed: null,
+      child: PlutoGridColumnIcon2(
+        sort: _sort,
+        color: stateManager.configuration!.style.iconColor,
+        icon: widget.column.enableContextMenu
+            ? stateManager.configuration!.style.columnContextIcon
+            : stateManager.configuration!.style.columnResizeIcon,
       ),
     );
 
@@ -155,10 +150,11 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
                 )
               : columnWidget,
         ),
-        if (showContextIcon)
+        if (true)
           Positioned.directional(
             textDirection: stateManager.textDirection,
-            end: -3,
+            start: -6, ///v  отступ стрелок сортировки
+            top:8, ///v
             child: enableGesture
                 ? Listener(
                     onPointerDown: _handleOnPointDown,
@@ -209,6 +205,66 @@ class PlutoGridColumnIcon extends StatelessWidget {
           color: color,
         );
     }
+  }
+}
+
+
+
+///v  другой дизайн стрелок сортировки
+class PlutoGridColumnIcon2 extends StatelessWidget {
+  final PlutoColumnSort? sort;
+
+  final Color color;
+
+  final IconData icon;
+
+  const PlutoGridColumnIcon2({
+    this.sort,
+    this.color = Colors.black26,
+    this.icon = Icons.dehaze,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return  Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          alignment: Alignment.topLeft,
+          height: 10,
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_drop_up,
+            ),
+            onPressed: () {},
+            iconSize: 22,
+            color: sort == PlutoColumnSort.ascending ? Colors.black:Color(0xFFCECECF),
+            // color: Colors.grey,
+            padding: const EdgeInsets.all(0),
+          ),
+        ),
+        Container(
+          alignment: Alignment.topLeft,
+          height: 10,
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_drop_down,
+            ),
+            onPressed: () {},
+            iconSize: 22,
+            color: sort == PlutoColumnSort.descending ? Colors.black:Color(0xFFCECECF),
+            padding: const EdgeInsets.all(0),
+          ),
+        ),
+      ],
+    );
+
+
+
+
   }
 }
 
@@ -344,6 +400,13 @@ class _BuildColumnWidget extends StatelessWidget {
 
         final style = stateManager.style;
 
+        ///v todo: сделать по человечи отрисовку полосок
+        bool needBorder =false;
+        if (stateManager.configuration!.linesForFields != null) {
+          needBorder = stateManager.configuration!.linesForFields!.contains(column.field);
+        }
+
+
         return Container(
           width: column.width,
           height: height,
@@ -353,7 +416,7 @@ class _BuildColumnWidget extends StatelessWidget {
                 ? column.backgroundColor
                 : style.dragTargetColumnColor,
             border: BorderDirectional(
-              end: style.enableColumnBorderVertical
+              end: style.enableColumnBorderVertical && needBorder
                   ? BorderSide(color: style.borderColor, width: 1.0)
                   : BorderSide.none,
             ),

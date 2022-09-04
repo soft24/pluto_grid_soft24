@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
 class PlutoGridConfiguration {
+
+  ///v
+  final List <String>? linesForFields;
+
   /// When you select a value in the pop-up grid, it moves down.
   final bool enableMoveDownAfterSelecting;
 
@@ -38,6 +42,7 @@ class PlutoGridConfiguration {
   final PlutoGridLocaleText localeText;
 
   const PlutoGridConfiguration({
+    this.linesForFields,
     this.enableMoveDownAfterSelecting = false,
     this.enableMoveHorizontalInEditing = false,
     this.enterKeyAction = PlutoGridEnterKeyAction.editingAndMoveDown,
@@ -49,6 +54,7 @@ class PlutoGridConfiguration {
   });
 
   const PlutoGridConfiguration.dark({
+    this.linesForFields,
     this.enableMoveDownAfterSelecting = false,
     this.enableMoveHorizontalInEditing = false,
     this.enterKeyAction = PlutoGridEnterKeyAction.editingAndMoveDown,
@@ -135,6 +141,7 @@ class PlutoGridStyleConfig {
     this.menuBackgroundColor = Colors.white,
     this.gridBorderColor = const Color(0xFFA1A5AE),
     this.borderColor = const Color(0xFFDDE2EB),
+    this.lineColor = const Color(0xFFD20755),
     this.activatedBorderColor = Colors.lightBlue,
     this.inactivatedBorderColor = const Color(0xFFC4C7CC),
     this.iconSize = 18,
@@ -185,6 +192,7 @@ class PlutoGridStyleConfig {
     this.menuBackgroundColor = const Color(0xFF414141),
     this.gridBorderColor = const Color(0xFF666666),
     this.borderColor = const Color(0xFF222222),
+    this.lineColor = const Color(0xFFD20755),
     this.activatedBorderColor = const Color(0xFFFFFFFF),
     this.inactivatedBorderColor = const Color(0xFF666666),
     this.iconSize = 18,
@@ -284,6 +292,9 @@ class PlutoGridStyleConfig {
   /// for [PlutoColumn], [PlutoColumnGroup], [PlutoCell], [PlutoRow], etc.
   final Color borderColor;
 
+  ///v
+  final Color lineColor;
+
   /// Border color set when widgets such as [PlutoRow] and [PlutoCell]
   /// receive focus or are currently selected.
   final Color activatedBorderColor;
@@ -363,6 +374,7 @@ class PlutoGridStyleConfig {
     Color? menuBackgroundColor,
     Color? gridBorderColor,
     Color? borderColor,
+    Color? lineColor,
     Color? activatedBorderColor,
     Color? inactivatedBorderColor,
     double? iconSize,
@@ -409,6 +421,7 @@ class PlutoGridStyleConfig {
       menuBackgroundColor: menuBackgroundColor ?? this.menuBackgroundColor,
       gridBorderColor: gridBorderColor ?? this.gridBorderColor,
       borderColor: borderColor ?? this.borderColor,
+      lineColor: lineColor ?? this.lineColor,
       activatedBorderColor: activatedBorderColor ?? this.activatedBorderColor,
       inactivatedBorderColor:
           inactivatedBorderColor ?? this.inactivatedBorderColor,

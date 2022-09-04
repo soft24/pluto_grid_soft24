@@ -128,6 +128,9 @@ class _ColumnGroupTitle extends StatelessWidget {
 
     final style = stateManager.style;
 
+
+
+
     return Container(
       height: groupTitleHeight,
       padding: _padding,

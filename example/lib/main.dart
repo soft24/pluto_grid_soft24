@@ -26,12 +26,6 @@ void main() {
   runApp(const MyApp());
 }
 
-class Data {
-  getdata() {
-    String serverPath = "https://velpaid.com/api/v1/job-offers";
-  }
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -168,6 +162,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       field: 'awi',
       width: ww + 10,
       frozen: PlutoColumnFrozen.start,
+      enableColumnDrag: false,
 
       type: PlutoColumnType.text(),
       renderer: (rendererContext) {
@@ -755,15 +750,22 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
             print(event);
           },
           configuration: const PlutoGridConfiguration(
+
+            linesForFields: ["job","daly"],
+
             style: PlutoGridStyleConfig(
 
-              enableColumnBorderVertical: false,
+              enableColumnBorderVertical: true,
               enableColumnBorderHorizontal: false,
 
-              enableCellBorderVertical: false,
+              enableCellBorderVertical: true,
               enableCellBorderHorizontal: false,
 
+              gridBorderColor : Color(0xff1146ab),
+              borderColor : Color(0xff4af834),
 
+
+                lineColor:Color(0xfffd0000),
               defaultColumnTitlePadding: EdgeInsets.symmetric(horizontal: 10),
               defaultColumnFilterPadding: EdgeInsets.symmetric(horizontal: 10),
               defaultCellPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -771,6 +773,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
               columnGroupHeight: ColumnGroupHeight,
               headerBottom: headerBottom,
             ),
+
             columnSize: PlutoGridColumnSizeConfig(
               autoSizeMode: PlutoAutoSizeMode.none,
               resizeMode: PlutoResizeMode.pushAndPull,
@@ -829,48 +832,48 @@ headerWithOrder(txt) {
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      Container(
-        // color: Colors.red,
-        padding: EdgeInsets.only(top: 17),
-        width: 20,
-        height: 55,
-
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              alignment: Alignment.topLeft,
-              height: 10,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.arrow_drop_up,
-                ),
-                onPressed: () {},
-                iconSize: 18,
-                color: Colors.grey,
-                // color: Colors.grey,
-                padding: const EdgeInsets.all(0),
-              ),
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              height: 10,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                ),
-                onPressed: () {},
-                iconSize: 18,
-                color: Colors.grey,
-                padding: const EdgeInsets.all(0),
-              ),
-            ),
-          ],
-        ),
-      ),
+      // Container(
+      //   // color: Colors.red,
+      //   padding: EdgeInsets.only(top: 17),
+      //   width: 20,
+      //   height: 55,
+      //
+      //   child: Column(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: [
+      //       Container(
+      //         alignment: Alignment.topLeft,
+      //         height: 10,
+      //         child: IconButton(
+      //           icon: const Icon(
+      //             Icons.arrow_drop_up,
+      //           ),
+      //           onPressed: () {},
+      //           iconSize: 18,
+      //           color: Colors.grey,
+      //           // color: Colors.grey,
+      //           padding: const EdgeInsets.all(0),
+      //         ),
+      //       ),
+      //       Container(
+      //         alignment: Alignment.topLeft,
+      //         height: 10,
+      //         child: IconButton(
+      //           icon: const Icon(
+      //             Icons.arrow_drop_down,
+      //           ),
+      //           onPressed: () {},
+      //           iconSize: 18,
+      //           color: Colors.grey,
+      //           padding: const EdgeInsets.all(0),
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
       Container(
         alignment: Alignment.topLeft,
-        padding: EdgeInsets.only(top: 18),
+        padding: EdgeInsets.only(top: 18, left: 25),
         child: Text(
           txt,
           style: const TextStyle(

@@ -187,7 +187,7 @@ class PlutoColumn {
     this.applyFormatterInEditing = false,
     this.backgroundColor,
     this.renderer,
-    this.enableColumnDrag = true,
+    this.enableColumnDrag = false,
     this.enableRowDrag = false,
     this.enableRowChecked = false,
     this.enableSorting = true,
