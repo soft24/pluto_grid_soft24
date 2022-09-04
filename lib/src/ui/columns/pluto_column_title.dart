@@ -272,7 +272,6 @@ class _BuildDraggableWidget extends StatelessWidget {
   final PlutoGridStateManager stateManager;
 
   final PlutoColumn column;
-
   final Widget child;
 
   const _BuildDraggableWidget({
