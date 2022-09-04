@@ -125,17 +125,27 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
       ),
     );
 
-    final contextMenuIcon = Container(
-      height: widget.height,
-      alignment: Alignment.center,
-      child: PlutoGridColumnIcon2(
-        sort: _sort,
-        color: stateManager.configuration!.style.iconColor,
-        icon: widget.column.enableContextMenu
-            ? stateManager.configuration!.style.columnContextIcon
-            : stateManager.configuration!.style.columnResizeIcon,
-      ),
-    );
+    late final  contextMenuIcon ;
+
+    if (widget.column.title==""){
+       contextMenuIcon = Container(
+        height: widget.height,
+        alignment: Alignment.center,
+        child: SizedBox(),
+      );
+    } else {
+      contextMenuIcon = Container(
+        height: widget.height,
+        alignment: Alignment.center,
+        child: PlutoGridColumnIcon2(
+          sort: _sort,
+          color: stateManager.configuration!.style.iconColor,
+          icon: widget.column.enableContextMenu
+              ? stateManager.configuration!.style.columnContextIcon
+              : stateManager.configuration!.style.columnResizeIcon,
+        ),
+      );
+    }
 
     return Stack(
       children: [
@@ -150,7 +160,7 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
                 )
               : columnWidget,
         ),
-        if (true)
+
           Positioned.directional(
             textDirection: stateManager.textDirection,
             start: -6, ///v  отступ стрелок сортировки

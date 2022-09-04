@@ -129,6 +129,11 @@ class _ColumnGroupTitle extends StatelessWidget {
     final style = stateManager.style;
 
 
+    ///v todo: сделать по человечи отрисовку полосок
+    bool needBorder =false;
+    if (stateManager.configuration!.linesForFields != null) {
+      needBorder = stateManager.configuration!.linesForFields!.contains(columnGroup.group.title);
+    }
 
 
     return Container(
@@ -137,7 +142,7 @@ class _ColumnGroupTitle extends StatelessWidget {
       decoration: BoxDecoration(
         color: columnGroup.group.backgroundColor,
         border: BorderDirectional(
-          end: style.enableColumnBorderVertical
+          end: style.enableColumnBorderVertical && needBorder
               ? BorderSide(
                   color: style.borderColor,
                   width: 1.0,

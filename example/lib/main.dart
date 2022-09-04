@@ -70,7 +70,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       filterPadding: EdgeInsets.zero,
       // titleSpan:EdgeInsets.zero,
       cellPadding: EdgeInsets.zero,
-      title: 'checked',
+      title: '',
       enableContextMenu: false,
       enableDropToResize: false,
       width: 35,
@@ -751,7 +751,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
           },
           configuration: const PlutoGridConfiguration(
 
-            linesForFields: ["job","daly"],
+            linesForFields: ["job","daly",     "Salary options","Job"],
 
             style: PlutoGridStyleConfig(
 
