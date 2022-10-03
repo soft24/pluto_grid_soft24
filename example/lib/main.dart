@@ -267,6 +267,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       // cellPadding: EdgeInsets.zero,
       title: 'OFF GROSS',
       field: 'gross',
+      enableSorting:false,
       width: ww,
       enableContextMenu: false,
       enableDropToResize: false,

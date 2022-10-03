@@ -127,7 +127,7 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
 
     late final  contextMenuIcon ;
 
-    if (widget.column.title==""){
+    if (widget.column.title=="" || !widget.column.enableSorting){ /// v add || !widget.column.enableSorting чтобы не показывать стрелки если нету сортировки
        contextMenuIcon = Container(
         height: widget.height,
         alignment: Alignment.center,
@@ -238,6 +238,9 @@ class PlutoGridColumnIcon2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // if (!enableSorting){
+    //   return SizedBox(height: 0,);
+    // }
 
     return  Column(
       mainAxisSize: MainAxisSize.min,
