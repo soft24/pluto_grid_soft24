@@ -251,7 +251,7 @@ class PlutoGridColumnIcon2 extends StatelessWidget {
             ),
             onPressed: () {},
             iconSize: 22,
-            color: sort == PlutoColumnSort.ascending ? Colors.black:Color(0xFFCECECF),
+            color: sort == PlutoColumnSort.ascending ? Color(0xFF0F8BD1):Color(0xFFCECECF), /// v
             // color: Colors.grey,
             padding: const EdgeInsets.all(0),
           ),
@@ -265,7 +265,7 @@ class PlutoGridColumnIcon2 extends StatelessWidget {
             ),
             onPressed: () {},
             iconSize: 22,
-            color: sort == PlutoColumnSort.descending ? Colors.black:Color(0xFFCECECF),
+            color: sort == PlutoColumnSort.descending ? Color(0xFF0F8BD1):Color(0xFFCECECF), /// v
             padding: const EdgeInsets.all(0),
           ),
         ),

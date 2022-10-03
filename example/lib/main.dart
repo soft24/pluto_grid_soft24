@@ -745,6 +745,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
           columnGroups: columnGroups,
           onLoaded: (PlutoGridOnLoadedEvent event) {
             stateManager = event.stateManager;
+            event.stateManager.setShowColumnFilter(true);
           },
           onChanged: (PlutoGridOnChangedEvent event) {
             print(event);
@@ -940,6 +941,7 @@ filterControl(double i,txt) {
       alignment: Alignment.centerLeft,
       height: FilterHeight,
       decoration:  BoxDecoration(
+
         gradient: LinearGradient(
             colors: [
 
@@ -955,4 +957,17 @@ filterControl(double i,txt) {
         padding: EdgeInsets.only(left: 20),
         child: Text("FILTER"),
       ));
+}
+
+
+BoxDecoration decorationBorder() {
+
+  return const BoxDecoration(
+    border: Border(
+      right: BorderSide( //                   <--- left side
+        color: Colors.red,
+        width: 2.0,
+      ),
+    ),
+  );
 }

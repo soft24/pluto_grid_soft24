@@ -277,7 +277,6 @@ class _CellContainerState extends PlutoStateWithChange<_CellContainer> {
       );
     } else {
       return enableCellVerticalBorder
-
           ///v
           ? BoxDecoration(
               border: BorderDirectional(
