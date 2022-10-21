@@ -135,7 +135,7 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
       );
     } else {
       contextMenuIcon = Container(
-        height: widget.height-9, ///v немного выше стрелки
+        height: widget.height,
         alignment: Alignment.center,
         child: PlutoGridColumnIcon2(
           sort: _sort,
@@ -163,8 +163,8 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
 
           Positioned.directional(
             textDirection: stateManager.textDirection,
-            start: -10, ///v  отступ стрелок сортировки
-            top:8, ///v
+            start: -5, ///v  отступ стрелок сортировки влево
+            top:3, ///v отступ стрелок сортировки сверху
             child: enableGesture
                 ? Listener(
                     onPointerDown: _handleOnPointDown,

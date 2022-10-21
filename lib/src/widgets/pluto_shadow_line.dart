@@ -16,7 +16,7 @@ class PlutoShadowLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (true) { ///v no shadow
+    if (false) { ///v no shadow
       return SizedBox(height: 0);
     } else {
       return Container(

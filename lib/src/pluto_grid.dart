@@ -1540,7 +1540,7 @@ class PlutoGridSettings {
 
   /// Grid - border width
   // static const double gridBorderWidth = 1.0;
-  static const double gridBorderWidth = 0.0; ///v
+  static const double gridBorderWidth = 0.0; ///v zero grid border
 
   static const double gridInnerSpacing =
       (gridPadding * 2) + (gridBorderWidth * 2);
