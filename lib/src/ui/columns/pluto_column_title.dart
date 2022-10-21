@@ -163,7 +163,7 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
 
           Positioned.directional(
             textDirection: stateManager.textDirection,
-            start: -5, ///v  отступ стрелок сортировки влево
+            start: -10, ///v отступ стрелок сортировки влево
             top:3, ///v отступ стрелок сортировки сверху
             child: enableGesture
                 ? Listener(
