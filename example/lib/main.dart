@@ -739,6 +739,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color:Colors.orange,
         padding: const EdgeInsets.all(15),
         child: Material(child:PlutoGrid(
           columns: columns,
@@ -756,6 +757,9 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
             linesForFields: ["job","daly",     "Salary options","Job"],
 
             style: PlutoGridStyleConfig(
+
+              enableGridBorderShadow:false,
+
 
               enableColumnBorderVertical: true,
               enableColumnBorderHorizontal: false,
