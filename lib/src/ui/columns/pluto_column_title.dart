@@ -135,7 +135,7 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
       );
     } else {
       contextMenuIcon = Container(
-        height: widget.height-5, ///v немного выше стрелки
+        height: widget.height-8, ///v немного выше стрелки
         alignment: Alignment.center,
         child: PlutoGridColumnIcon2(
           sort: _sort,
