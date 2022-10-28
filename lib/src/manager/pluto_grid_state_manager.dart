@@ -439,7 +439,7 @@ class _ApplyCellForSetColumnRow implements _Apply {
   void execute(PlutoRow row) {
     for (var element in refColumns) {
 
-      print("element.field ${element.field} "); /// todo remove it
+      // print("element.field ${element.field} "); /// todo remove it
 
       row.cells[element.field]!
         ..setColumn(element)
