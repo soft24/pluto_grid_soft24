@@ -184,9 +184,6 @@ class PlutoGridStateManager extends PlutoGridStateChangeNotifier {
     var rowLength = refRows.length;
 
     for (var rowIdx = 0; rowIdx < rowLength; rowIdx += 1) {
-      print("all len = $rowLength  index= $rowIdx   refRows[rowIdx]=${refRows[rowIdx]}  "); /// todo remove it
-      print("${refRows[rowIdx].key}  "); /// todo remove it
-      // print("${refRows[rowIdx].cells}  "); /// todo remove it
       applyList.execute(refRows[rowIdx]);
     }
 
@@ -441,6 +438,9 @@ class _ApplyCellForSetColumnRow implements _Apply {
   @override
   void execute(PlutoRow row) {
     for (var element in refColumns) {
+
+      print("element.field ${element.field} "); /// todo remove it
+
       row.cells[element.field]!
         ..setColumn(element)
         ..setRow(row);
