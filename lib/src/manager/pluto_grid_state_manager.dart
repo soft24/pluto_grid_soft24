@@ -184,7 +184,9 @@ class PlutoGridStateManager extends PlutoGridStateChangeNotifier {
     var rowLength = refRows.length;
 
     for (var rowIdx = 0; rowIdx < rowLength; rowIdx += 1) {
-      print(" $rowIdx   refRows[rowIdx]=${refRows[rowIdx]}"); /// todo remove it
+      print("all len = $rowLength  index= $rowIdx   refRows[rowIdx]=${refRows[rowIdx]}  "); /// todo remove it
+      print("${refRows[rowIdx].key}  "); /// todo remove it
+      // print("${refRows[rowIdx].cells}  "); /// todo remove it
       applyList.execute(refRows[rowIdx]);
     }
 
