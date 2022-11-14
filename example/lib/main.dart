@@ -754,12 +754,12 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
           /// back lite row color
           rowColorCallback: (rowColorContext) {
             if (rowColorContext.row.cells.entries.elementAt(2).value.value == 'Team') {
-              return Colors.blueAccent;
+              return Color(0xFFFFE3E3);
             } else if (rowColorContext.row.cells.entries.elementAt(4).value.value == 'Two') {
-              return Colors.cyanAccent;
+              return Color(0xFFC9DCA9);
             }
 
-            return Colors.lightBlue;
+            return Color(0xFFE9EEFF);
           },
 
           configuration: const PlutoGridConfiguration(

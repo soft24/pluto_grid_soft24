@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
@@ -241,6 +243,13 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
     );
   }
 
+///v
+  Color increaseColorSaturation(Color color, double increment) {
+    var hslColor = HSLColor.fromColor(color);
+    var newValue = min(max(hslColor.saturation + increment, 0.0), 1.0);
+    return hslColor.withSaturation(newValue).toColor();
+  }
+
   Color _getRowColor({
     required bool isDragTarget,
     required bool isFocusedCurrentRow,
@@ -262,7 +271,8 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
 
       if (checkCurrentRow || checkSelectedRow) {
         // color = stateManager.configuration!.style.activatedColor;
-        color =  Color.alphaBlend(  stateManager.configuration!.style.activatedColor,  _getDefaultRowColor()); /// наложение цвета, вместо замены
+         color =  Color.alphaBlend(  stateManager.configuration!.style.activatedColor,  _getDefaultRowColor()); /// наложение цвета, вместо замены
+        color = increaseColorSaturation(color,20);/// увеличить цветность
       }
     }
 
