@@ -261,7 +261,8 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
           stateManager.isSelectedRow(widget.row.key);
 
       if (checkCurrentRow || checkSelectedRow) {
-        color = stateManager.configuration!.style.activatedColor;
+        // color = stateManager.configuration!.style.activatedColor;
+        color =  Color.alphaBlend(  stateManager.configuration!.style.activatedColor,  _getDefaultRowColor()); /// наложение цвета, вместо замены
       }
     }
 

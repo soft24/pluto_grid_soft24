@@ -17,8 +17,6 @@
 // //FlutterGen // https://github.com/FlutterGen/flutter_gen
 // flutter packages pub run build_runner build
 
-
-
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
@@ -36,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  const PlutoGridExamplePage(),
+      home: const PlutoGridExamplePage(),
     );
   }
 }
@@ -92,11 +90,10 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
                       gradient: LinearGradient(
                           colors: [
                             //background: linear-gradient(270deg, rgba(3, 122, 173, 0.276) 0%, rgba(8, 156, 147, 0.227188) 43.23%, rgba(14, 201, 89, 0.234) 100%);
-                              filterControlColorFunc(0),
-                              filterControlColorFunc(0),
+                            filterControlColorFunc(0),
+                            filterControlColorFunc(0),
                             // Color.fromRGBO(8, 156, 147, 0.227188),
                             // Color.fromRGBO(14, 201, 89, 0.234),
-
                           ], // Color(0x0501BD01)
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter),
@@ -158,7 +155,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       title: 'average weekly income',
       enableContextMenu: false,
       enableDropToResize: false,
-      titleSpan: headerFilter(1,'AVERAGE\nWEEKLY\nINCOME'),
+      titleSpan: headerFilter(1, 'AVERAGE\nWEEKLY\nINCOME'),
       field: 'awi',
       width: ww + 10,
       frozen: PlutoColumnFrozen.start,
@@ -196,7 +193,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       enableContextMenu: false,
       enableDropToResize: false,
       width: ww,
-      titleSpan: headerFilter(2,'TYPE\n\n'),
+      titleSpan: headerFilter(2, 'TYPE\n\n'),
       type: PlutoColumnType.text(),
     ),
     PlutoColumn(
@@ -206,7 +203,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       // titleSpan:EdgeInsets.zero,
       // cellPadding: EdgeInsets.zero,
       title: 'cents per mile',
-      titleSpan: headerFilter(3,'CENTS \nPER\nMILE'),
+      titleSpan: headerFilter(3, 'CENTS \nPER\nMILE'),
       field: 'spm',
       enableContextMenu: false,
       enableDropToResize: false,
@@ -226,7 +223,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       title: 'weekly',
       field: 'weekly',
       width: ww,
-      titleSpan: headerFilter(4,'WEEKLY\n\n'),
+      titleSpan: headerFilter(4, 'WEEKLY\n\n'),
       enableContextMenu: false,
       enableDropToResize: false,
       type: PlutoColumnType.text(),
@@ -242,7 +239,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       width: ww,
       enableContextMenu: false,
       enableDropToResize: false,
-      titleSpan: headerFilter(5,'DALY\n\n'),
+      titleSpan: headerFilter(5, 'DALY\n\n'),
       type: PlutoColumnType.text(),
     ),
     PlutoColumn(
@@ -256,7 +253,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       width: ww,
       enableContextMenu: false,
       enableDropToResize: false,
-      titleSpan: headerFilter(6,'PER\nHOUR\n'),
+      titleSpan: headerFilter(6, 'PER\nHOUR\n'),
       type: PlutoColumnType.text(),
     ),
     PlutoColumn(
@@ -267,11 +264,11 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
       // cellPadding: EdgeInsets.zero,
       title: 'OFF GROSS',
       field: 'gross',
-      enableSorting:false,
+      enableSorting: false,
       width: ww,
       enableContextMenu: false,
       enableDropToResize: false,
-      titleSpan: headerFilter(7,'%OFF\nGROSS\n'),
+      titleSpan: headerFilter(7, '%OFF\nGROSS\n'),
       type: PlutoColumnType.text(),
     ),
   ];
@@ -728,7 +725,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
     // PlutoColumnGroup(title: 'checked', fields: ['checked'], expandedColumn: true),
     PlutoColumnGroup(title: 'AWI', fields: ['awi'], titleSpan: headerGroupCaption("AWI"), backgroundColor: colorB, titlePadding: EdgeInsets.zero),
     PlutoColumnGroup(title: 'Job', fields: ['job'], titleSpan: headerGroupCaption("Job"), backgroundColor: colorB, titlePadding: EdgeInsets.zero),
-    PlutoColumnGroup(title: 'Salary options', fields: ['spm', 'weekly', 'daly', 'hour', 'gross'], titleSpan: headerGroupCaption("Salary Options"), backgroundColor: colorB, titlePadding: EdgeInsets.zero),
+    PlutoColumnGroup(title: 'Salary options', fields: ['spm', 'weekly', 'daly', 'hour', 'gross'], titleSpan: headerGroupCaption("Salary Options1"), backgroundColor: colorB, titlePadding: EdgeInsets.zero),
   ];
 
   /// [PlutoGridStateManager] has many methods and properties to dynamically manipulate the grid.
@@ -739,9 +736,10 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color:Colors.orange,
+        color: Colors.orange,
         padding: const EdgeInsets.all(15),
-        child: Material(child:PlutoGrid(
+        child: Material(
+            child: PlutoGrid(
           columns: columns,
           rows: rows,
           columnGroups: columnGroups,
@@ -752,14 +750,22 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
           onChanged: (PlutoGridOnChangedEvent event) {
             print(event);
           },
+
+          /// back lite row color
+          rowColorCallback: (rowColorContext) {
+            if (rowColorContext.row.cells.entries.elementAt(2).value.value == 'Team') {
+              return Colors.blueAccent;
+            } else if (rowColorContext.row.cells.entries.elementAt(4).value.value == 'Two') {
+              return Colors.cyanAccent;
+            }
+
+            return Colors.lightBlue;
+          },
+
           configuration: const PlutoGridConfiguration(
-
-            linesForFields: ["job","daly",     "Salary options","Job"],
-
+            linesForFields: ["job", "daly", "Salary options", "Job"],
             style: PlutoGridStyleConfig(
-
-              enableGridBorderShadow:false,
-
+              enableGridBorderShadow: false,
 
               enableColumnBorderVertical: true,
               enableColumnBorderHorizontal: false,
@@ -767,11 +773,14 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
               enableCellBorderVertical: true,
               enableCellBorderHorizontal: false,
 
-              gridBorderColor : Color(0xff1146ab),
-              borderColor : Color(0xff4af834),
+              gridBorderColor: Color(0xff1146ab),
+              borderColor: Color(0xff4af834),
+              lineColor: Color(0xfffd0000),
 
+              /// active line backlite
+              activatedColor: const Color(0x20BBBBBB),
+              checkedColor: const Color(0xFFFD0000),
 
-                lineColor:Color(0xfffd0000),
               defaultColumnTitlePadding: EdgeInsets.symmetric(horizontal: 10),
               defaultColumnFilterPadding: EdgeInsets.symmetric(horizontal: 10),
               defaultCellPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -779,7 +788,6 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
               columnGroupHeight: ColumnGroupHeight,
               headerBottom: headerBottom,
             ),
-
             columnSize: PlutoGridColumnSizeConfig(
               autoSizeMode: PlutoAutoSizeMode.none,
               resizeMode: PlutoResizeMode.pushAndPull,
@@ -790,10 +798,6 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
     );
   }
 }
-
-
-
-
 
 /// /// column headers
 /// column Group Caption
@@ -806,7 +810,6 @@ headerGroupCaption(h) {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-
             children: [
               Container(
                 height: 32,
@@ -823,7 +826,6 @@ headerGroupCaption(h) {
                 ),
               ),
               infoControl(),
-
             ],
           ),
         ),
@@ -832,6 +834,7 @@ headerGroupCaption(h) {
     ],
   );
 }
+
 /// column filter
 headerWithOrder(txt) {
   return Row(
@@ -893,8 +896,9 @@ headerWithOrder(txt) {
     ],
   );
 }
+
 /// column caption & sort
-headerFilter(double i, h ) {
+headerFilter(double i, h) {
   return WidgetSpan(
     child: Container(
       // color: Colors.amber,
@@ -903,14 +907,13 @@ headerFilter(double i, h ) {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          filterControl(i,"FILTER"),
+          filterControl(i, "FILTER"),
           headerWithOrder(h),
         ],
       ),
     ),
   );
 }
-
 
 /// /// column header controlls
 
@@ -919,9 +922,7 @@ infoControl() {
     height: 12.0,
     width: 12.0,
     child: IconButton(
-      icon: const Icon(
-          Icons.info_outline, size: 12
-      ),
+      icon: const Icon(Icons.info_outline, size: 12),
       onPressed: () {},
       iconSize: 12,
       color: Color(0xFF01BD01),
@@ -930,26 +931,26 @@ infoControl() {
     ),
   );
 }
-HSLColor cl=  HSLColor.fromColor( Color.fromRGBO(3, 122, 173, 0.18))                ;
-filterControlColorFunc(i){
-  return cl.withHue(190.0-i*10).toColor();
-}
-filterControl(double i,txt) {
 
+HSLColor cl = HSLColor.fromColor(Color.fromRGBO(3, 122, 173, 0.18));
+
+filterControlColorFunc(i) {
+  return cl.withHue(190.0 - i * 10).toColor();
+}
+
+filterControl(double i, txt) {
   // Color cl1 = HSLColor.fromColor(Color(0xFFE8F5F8)).withLightness(filterControlColorFunc(i-1)).toColor();
   // Color cl2 = HSLColor.fromColor(Color(0xFFE8F5F8)).withLightness(filterControlColorFunc(i)).toColor();
 
-  Color cl1 = filterControlColorFunc(i-1);
-  Color cl2 =  filterControlColorFunc(i);
+  Color cl1 = filterControlColorFunc(i - 1);
+  Color cl2 = filterControlColorFunc(i);
 
   return Container(
       alignment: Alignment.centerLeft,
       height: FilterHeight,
-      decoration:  BoxDecoration(
-
+      decoration: BoxDecoration(
         gradient: LinearGradient(
             colors: [
-
               cl1,
               cl2,
               // Color(0x202CAFF9),
@@ -964,12 +965,11 @@ filterControl(double i,txt) {
       ));
 }
 
-
 BoxDecoration decorationBorder() {
-
   return const BoxDecoration(
     border: Border(
-      right: BorderSide( //                   <--- left side
+      right: BorderSide(
+        //                   <--- left side
         color: Colors.red,
         width: 2.0,
       ),
