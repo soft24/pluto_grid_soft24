@@ -755,11 +755,11 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
           rowColorCallback: (rowColorContext) {
             if (rowColorContext.row.cells.entries.elementAt(2).value.value == 'Team') {
               return Color(0xFFFFE3E3);
-            } else if (rowColorContext.row.cells.entries.elementAt(4).value.value == 'Two') {
-              return Color(0xFFC9DCA9);
+            } else if (rowColorContext.row.cells.entries.elementAt(4).value.value == 'Solo') {
+              return Color(0xFFFFFFFF);
             }
 
-            return Color(0xFFE9EEFF);
+            return Color(0xFFFFFFFF);
           },
 
           configuration: const PlutoGridConfiguration(
@@ -778,7 +778,7 @@ class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
               lineColor: Color(0xfffd0000),
 
               /// active line backlite
-              activatedColor: const Color(0x20BBBBBB),
+              activatedColor: const Color(0xFFFFEE9B),
               checkedColor: const Color(0xFFFD0000),
 
               defaultColumnTitlePadding: EdgeInsets.symmetric(horizontal: 10),

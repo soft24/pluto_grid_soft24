@@ -250,6 +250,12 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
     return hslColor.withSaturation(newValue).toColor();
   }
 
+  Color increaseColorLightness(Color color, double increment) {
+    var hslColor = HSLColor.fromColor(color);
+    var newValue = min(max(hslColor.lightness + increment, 0.0), 1.0);
+    return hslColor.withLightness(newValue).toColor();
+  }
+
   Color _getRowColor({
     required bool isDragTarget,
     required bool isFocusedCurrentRow,
@@ -271,8 +277,11 @@ class _RowContainerWidgetState extends PlutoStateWithChange<_RowContainerWidget>
 
       if (checkCurrentRow || checkSelectedRow) {
         // color = stateManager.configuration!.style.activatedColor;
-         color =  Color.alphaBlend(  stateManager.configuration!.style.activatedColor,  _getDefaultRowColor()); /// наложение цвета, вместо замены
-        color = increaseColorSaturation(color,20);/// увеличить цветность
+
+      Color  thecolor = increaseColorLightness(_getDefaultRowColor(),-0.05);/// увеличить цветность
+
+      color =  Color.alphaBlend(  stateManager.configuration!.style.activatedColor,  thecolor); /// наложение цвета, вместо замены
+
       }
     }
 
