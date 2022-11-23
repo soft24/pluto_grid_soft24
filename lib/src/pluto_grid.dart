@@ -1519,7 +1519,7 @@ extension PlutoGridModeExtension on PlutoGridMode? {
 class PlutoGridSettings {
   /// If there is a frozen column, the minimum width of the body
   /// (if it is less than the value, the frozen column is released)
-  static const double bodyMinWidth = 200.0;
+  static const double bodyMinWidth = 50.0;
 
   /// Default column width
   static const double columnWidth = 200.0;
