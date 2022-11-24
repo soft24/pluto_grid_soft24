@@ -161,19 +161,20 @@ class PlutoColumnTitleState extends PlutoStateWithChange<PlutoColumnTitle> {
               : columnWidget,
         ),
 
-          Positioned.directional(
-            textDirection: stateManager.textDirection,
-            start: -10, ///v отступ стрелок сортировки влево
-            top:3+3,  ///v отступ стрелок сортировки сверху
-            child: enableGesture
-                ? Listener(
-                    onPointerDown: _handleOnPointDown,
-                    onPointerMove: _handleOnPointMove,
-                    onPointerUp: _handleOnPointUp,
-                    child: contextMenuIcon,
-                  )
-                : contextMenuIcon,
-          ),
+          /// отрисуем в своей программе
+          // Positioned.directional(
+          //   textDirection: stateManager.textDirection,
+          //   start: -10, ///v отступ стрелок сортировки влево
+          //   top:3+3,  ///v отступ стрелок сортировки сверху
+          //   child: enableGesture
+          //       ? Listener(
+          //           onPointerDown: _handleOnPointDown,
+          //           onPointerMove: _handleOnPointMove,
+          //           onPointerUp: _handleOnPointUp,
+          //           child: contextMenuIcon,
+          //         )
+          //       : contextMenuIcon,
+          // ),
       ],
     );
   }
